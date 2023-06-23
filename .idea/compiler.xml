@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="gradebook-api" target="11" />
+      <module name="gradebook-api_main" target="11" />
+      <module name="gradebook-api_test" target="11" />
+      <module name="gradebook-api_testIntegration" target="11" />
+      <module name="gradebook-service" target="11" />
+      <module name="gradebook-service_main" target="11" />
+      <module name="gradebook-service_test" target="11" />
+      <module name="gradebook-service_testIntegration" target="11" />
+      <module name="liferay-training-workspace" target="11" />
+      <module name="training-workspace_main" target="11" />
+      <module name="training-workspace_test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

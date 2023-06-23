@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/modules/gradebook/gradebook.iml" filepath="$PROJECT_DIR$/modules/gradebook/gradebook.iml" group="training-workspace/modules/gradebook" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-api/gradebook-api.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-api/gradebook-api.iml" group="training-workspace/modules/gradebook/gradebook-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-api/gradebook-api_main.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-api/gradebook-api_main.iml" group="training-workspace/modules/gradebook/gradebook-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-api/gradebook-api_test.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-api/gradebook-api_test.iml" group="training-workspace/modules/gradebook/gradebook-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-api/gradebook-api_testIntegration.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-api/gradebook-api_testIntegration.iml" group="training-workspace/modules/gradebook/gradebook-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-service/gradebook-service.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-service/gradebook-service.iml" group="training-workspace/modules/gradebook/gradebook-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-service/gradebook-service_main.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-service/gradebook-service_main.iml" group="training-workspace/modules/gradebook/gradebook-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-service/gradebook-service_test.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-service/gradebook-service_test.iml" group="training-workspace/modules/gradebook/gradebook-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-service/gradebook-service_testIntegration.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/gradebook/gradebook-service/gradebook-service_testIntegration.iml" group="training-workspace/modules/gradebook/gradebook-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/liferay-training-workspace.iml" filepath="$PROJECT_DIR$/.idea/modules/liferay-training-workspace.iml" group="training-workspace" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/modules/modules.iml" filepath="$PROJECT_DIR$/.idea/modules/modules/modules.iml" group="training-workspace/modules" />
+      <module fileurl="file://$PROJECT_DIR$/training-workspace.iml" filepath="$PROJECT_DIR$/training-workspace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/training-workspace_main.iml" filepath="$PROJECT_DIR$/.idea/modules/training-workspace_main.iml" group="training-workspace" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/training-workspace_test.iml" filepath="$PROJECT_DIR$/.idea/modules/training-workspace_test.iml" group="training-workspace" />
+    </modules>
+  </component>
+</project>
