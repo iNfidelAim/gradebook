@@ -20,4 +20,4 @@ tasks.withType(JavaCompile) {
 	}
 	group = "com.liferay.training.gradebook"
 
-}))
+}
