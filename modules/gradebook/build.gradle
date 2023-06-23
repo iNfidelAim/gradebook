@@ -5,7 +5,7 @@ tasks.withType(JavaCompile) {
 	sourceCompatibility = JavaVersion.VERSION_1_8
 	targetCompatibility = JavaVersion.VERSION_1_8
 
-	dependencies {
+	/*dependencies {
 		compileOnly group: "com.liferay", name: "com.liferay.petra.lang"
 		compileOnly group: "com.liferay", name: "com.liferay.petra.string"
 		compileOnly group: "com.liferay", name: "com.liferay.portal.aop.api"
@@ -14,7 +14,7 @@ tasks.withType(JavaCompile) {
 		compileOnly group: "org.osgi", name: "org.osgi.core"
 		compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
 		compileOnly project(":modules:gradebook:gradebook-api")
-	}
+	}*/
 	buildService {
 		apiDir = "../gradebook-api/src/main/java"
 	}
