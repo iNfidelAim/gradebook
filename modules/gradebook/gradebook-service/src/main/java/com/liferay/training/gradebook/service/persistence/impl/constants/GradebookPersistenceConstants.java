@@ -15,7 +15,7 @@
 package com.liferay.training.gradebook.service.persistence.impl.constants;
 
 /**
- * @author Ruslan
+ * @author Brian Wing Shun Chan
  * @generated
  */
 public class GradebookPersistenceConstants {

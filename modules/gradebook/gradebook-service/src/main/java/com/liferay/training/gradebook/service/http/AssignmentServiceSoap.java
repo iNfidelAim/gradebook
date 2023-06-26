@@ -59,7 +59,7 @@ import java.util.Map;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author Ruslan
+ * @author Brian Wing Shun Chan
  * @see AssignmentServiceHttp
  * @generated
  */

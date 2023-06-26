@@ -6,6 +6,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.training.gradebook.model.Assignment;
 import com.liferay.training.gradebook.service.base.AssignmentLocalServiceBaseImpl;
 import com.liferay.portal.kernel.dao.orm.Disjunction;
@@ -34,22 +35,49 @@ import java.util.Map;
 )
 public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 
+	private void updateAsset(Assignment assignment, ServiceContext serviceContext)
+			throws PortalException {
+		assetEntryLocalService.updateEntry(serviceContext.getUserId(), serviceContext.getScopeGroupId(),
+				assignment.getCreateDate(), assignment.getModifiedDate(),
+				Assignment.class.getName(), assignment.getAssignmentId(),
+
+		assignment.getUuid(), 0, serviceContext.getAssetCategoryIds(),
+				serviceContext.getAssetTagNames(), true, true,
+				assignment.getCreateDate(), null, null, null,
+				ContentTypes.TEXT_HTML,
+				assignment.getTitle(serviceContext.getLocale()),
+				assignment.getDescription(serviceContext.getLocale())
+				, null, null, null, 0, 0,
+				serviceContext.getAssetPriority());
+	}
+
+
 	public Assignment addAssignment(
 			long groupId, Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
 			Date dueDate, ServiceContext serviceContext)
 			throws PortalException {
-// Validate assignment parameters.
+
+		// Validate assignment parameters.
+
 		_assignmentValidator.validate(titleMap, descriptionMap, dueDate);
-// Get group and user.
+
+		// Get group and user.
+
 		Group group = groupLocalService.getGroup(groupId);
 		long userId = serviceContext.getUserId();
 		User user = userLocalService.getUser(userId);
-// Generate primary key for the assignment.
+
+		// Generate primary key for the assignment.
+
 		long assignmentId =
 				counterLocalService.increment(Assignment.class.getName());
-// Create assigment. This doesn't yet persist the entity.
+
+		// Create assigment. This doesn't yet persist the entity.
+
 		Assignment assignment = createAssignment(assignmentId);
-// Populate fields.
+
+		// Populate fields.
+
 		assignment.setCompanyId(group.getCompanyId());
 		assignment.setCreateDate(serviceContext.getCreateDate(new
 				Date()));
@@ -61,24 +89,36 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 		assignment.setTitleMap(titleMap);
 		assignment.setUserId(userId);
 		assignment.setUserName(user.getScreenName());
-// Persist assignment to database.
+
+		// Persist assignment to database.
+
 		assignment = super.addAssignment(assignment);
-// Add permission resources.
+
+		// Add permission resources.
+
 		boolean portletActions = false;
 		boolean addGroupPermissions = true;
 		boolean addGuestPermissions = true;
 		resourceLocalService.addResources(
 				group.getCompanyId(), groupId, userId, Assignment.class.getName(),
-				assignment.getAssignmentId(), portletActions, addGroupPermissions,
-				addGuestPermissions);
+				assignment.getAssignmentId(), portletActions, addGroupPermissions, addGuestPermissions);
+
+		updateAsset(assignment, serviceContext);
 
 		return assignment;
 	}
 
 	public Assignment deleteAssignment(Assignment assignment) throws PortalException {
-// Delete permission resources.
+
+
+		// Delete permission resources.
+
 		resourceLocalService.deleteResource(assignment, ResourceConstants.SCOPE_INDIVIDUAL);
-// Delete the Assignment
+
+		// Delete the Assignment
+
+		assetEntryLocalService.deleteEntry(Assignment.class.getName(), assignment.getAssignmentId());
+
 		return super.deleteAssignment(assignment);
 	}
 
@@ -88,14 +128,21 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 
 			_assignmentValidator.validate(titleMap, descriptionMap, dueDate);
 
-// Get the Assignment by id.
+		// Get the Assignment by id.
+
 		Assignment assignment = getAssignment(assignmentId);
-// Set updated fields and modification date.
+
+		// Set updated fields and modification date.
+
 		assignment.setModifiedDate(new Date());
 		assignment.setTitleMap(titleMap);
 		assignment.setDueDate(dueDate);
 		assignment.setDescriptionMap(descriptionMap);
+
 		assignment = super.updateAssignment(assignment);
+
+		updateAsset(assignment, serviceContext);
+
 		return assignment;
 	}
 

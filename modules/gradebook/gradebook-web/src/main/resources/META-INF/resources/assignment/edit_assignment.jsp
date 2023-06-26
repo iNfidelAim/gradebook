@@ -1,5 +1,6 @@
 <%@ include file="/init.jsp"%>
 
+
 <liferay-ui:error key="serviceErrorDetails">
     <liferay-ui:message key="error.assignment-service-error" arguments='<%= SessionErrors.get(liferayPortletRequest, "serviceErrorDetails") %>'/>
 </liferay-ui:error>
@@ -47,8 +48,6 @@
                 <aui:input name="description">
                     <aui:validator name="required" />
                 </aui:input>
-                Exercise: Implement the Assignment Editing View
-                111
                 <%-- Due date field. --%>
                 <aui:input name="dueDate">
                     <aui:validator name="required" />

@@ -10,5 +10,6 @@ dependencies {
 	compileOnly group: "javax.portlet", name: "portlet-api"
 	compileOnly group: "javax.servlet", name: "javax.servlet-api"
 	//compileOnly project(":modules:gradebook:gradebook-api")
+	compileOnly group: "com.liferay", name: "com.liferay.asset.display.page.api"
 
 }
