@@ -13,15 +13,14 @@ import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 
+import com.liferay.training.gradebook.validator.AssignmentValidator;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-
-
 
 
 
@@ -38,6 +37,8 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 			long groupId, Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
 			Date dueDate, ServiceContext serviceContext)
 			throws PortalException {
+
+			_assignmentValidator.validate(titleMap, descriptionMap, dueDate);
 
 // Get group and user.
 
@@ -71,6 +72,9 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 	public Assignment updateAssignment(long assignmentId, Map<Locale, String> titleMap, Map<Locale,
 			String> descriptionMap, Date dueDate, ServiceContext serviceContext)
 			throws PortalException {
+
+			_assignmentValidator.validate(titleMap, descriptionMap, dueDate);
+
 // Get the Assignment by id.
 		Assignment assignment = getAssignment(assignmentId);
 // Set updated fields and modification date.
@@ -127,5 +131,6 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 		throw new UnsupportedOperationException("Not supported.");
 	}
 
-
+	@Reference
+	AssignmentValidator _assignmentValidator;
 }

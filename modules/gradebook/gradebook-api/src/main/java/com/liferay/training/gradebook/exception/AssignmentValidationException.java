@@ -15,13 +15,25 @@ package com.liferay.training.gradebook.exception;
 
 import com.liferay.portal.kernel.exception.PortalException;
 
+import java.util.List;
+
 /**
  * @author Ruslan
  */
 public class AssignmentValidationException extends PortalException {
 
-	public AssignmentValidationException() {
+	/**
+	 * Custom constructor taking a list as a parameter.
+	 * @param errors
+	 */
+	public AssignmentValidationException(List<String> errors) {
+		super(String.join(",", errors));
+		_errors = errors;
 	}
+	public List<String> getErrors() { return _errors; }
+	private List<String> _errors;
+
+	public AssignmentValidationException() {}
 
 	public AssignmentValidationException(String msg) {
 		super(msg);

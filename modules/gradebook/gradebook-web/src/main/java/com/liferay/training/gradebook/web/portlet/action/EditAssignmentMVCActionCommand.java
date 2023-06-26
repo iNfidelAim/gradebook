@@ -4,6 +4,8 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -20,8 +22,6 @@ import javax.portlet.ActionResponse;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 /**
- Exercise: Implement the Assignment Editing View
- 120
  * MVC Action Command for editing assignments.
  *
  * @author liferay
@@ -32,6 +32,7 @@ import org.osgi.service.component.annotations.Reference;
         property = {
                 "javax.portlet.name=" + GradebookPortletKeys.Gradebook,
                 "mvc.command.name=" + MVCCommandNames.EDIT_ASSIGNMENT
+
         },
         service = MVCActionCommand.class
 )
@@ -43,28 +44,28 @@ public class EditAssignmentMVCActionCommand extends BaseMVCActionCommand {
         ServiceContext serviceContext =
                 ServiceContextFactory.getInstance(Assignment.class.getName(), actionRequest);
 // Get parameters from the request.
-        long assignmentId = ParamUtil.getLong(actionRequest,
-                "assignmentId");
-        Map<Locale, String> titleMap =
-                LocalizationUtil.getLocalizationMap(actionRequest
-                        , "title");
-        Map<Locale, String> descriptionMap = LocalizationUtil
-                .getLocalizationMap(actionRequest, "description");
-        Date dueDate = ParamUtil.getDate(actionRequest, "dueDate",
-                DateFormatFactoryUtil.getDate(actionRequest.getLocale()));
+        long assignmentId = ParamUtil.getLong(actionRequest, "assignmentId");
+                Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(actionRequest, "title");
+                                Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(actionRequest, "description");
+                                                Date dueDate = ParamUtil.getDate(actionRequest, "dueDate",
+                                                        DateFormatFactoryUtil.getDate(actionRequest.getLocale()));
         try {
 // Call the service to update the assignment
             _assignmentService.updateAssignment(
                     assignmentId, titleMap, descriptionMap, dueDate, serviceContext);
+// Set the success message.
+            SessionMessages.add(actionRequest, "assignmentUpdated");
             sendRedirect(actionRequest, actionResponse);
         }
         catch (AssignmentValidationException ave) {
-            ave.printStackTrace();
+// Get error messages from the service layer.
+            ave.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
             actionResponse.setRenderParameter(
                     "mvcRenderCommandName", MVCCommandNames.EDIT_ASSIGNMENT);
         }
         catch (PortalException pe) {
-            pe.printStackTrace();
+// Get error messages from the service layer.
+            SessionErrors.add(actionRequest, "serviceErrorDetails", pe);
             actionResponse.setRenderParameter(
                     "mvcRenderCommandName", MVCCommandNames.EDIT_ASSIGNMENT);
         }
