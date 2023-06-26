@@ -1,6 +1,6 @@
-package com.training.gradebook.web.portlet;
+package com.liferay.training.gradebook.web.portlet;
 
-import com.training.gradebook.web.constants.GradebookPortletKeys;
+import com.liferay.training.gradebook.web.constants.GradebookPortletKeys;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
@@ -19,7 +19,7 @@ import org.osgi.service.component.annotations.Component;
 			"javax.portlet.display-name=Gradebook",
 			"javax.portlet.init-param.template-path=/",
 			"javax.portlet.init-param.view-template=/view.jsp",
-			"javax.portlet.name=" + GradebookPortletKeys.GRADEBOOK,
+			"javax.portlet.name=" + GradebookPortletKeys.Gradebook,
 			"javax.portlet.resource-bundle=content.Language",
 			"javax.portlet.security-role-ref=power-user,user",
 			"com.liferay.portlet.display-category=category.training",
