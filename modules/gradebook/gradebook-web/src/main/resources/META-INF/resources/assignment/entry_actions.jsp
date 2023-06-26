@@ -1,3 +1,4 @@
+<%@ page import="com.liferay.training.gradebook.web.constants.MVCCommandNames" %>
 <%@ include file="/init.jsp"%>
 Exercise: Implement the Main View
 89
