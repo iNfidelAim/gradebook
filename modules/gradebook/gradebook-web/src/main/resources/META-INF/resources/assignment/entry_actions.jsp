@@ -1,7 +1,6 @@
 <%@ page import="com.liferay.training.gradebook.web.constants.MVCCommandNames" %>
 <%@ include file="/init.jsp"%>
-Exercise: Implement the Main View
-89
+
 <c:set var="assignment" value="${SEARCH_CONTAINER_RESULT_ROW.object}" />
 <liferay-ui:icon-menu markupView="lexicon">
 
